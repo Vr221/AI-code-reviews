@@ -1,16 +1,11 @@
 import streamlit as st
 import google.generativeai as genai
-import os
-from dotenv import load_dotenv
-
-# ----------------- Load Environment Variables -----------------
-load_dotenv()
 
 # ----------------- API Key Configuration -----------------
-GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
 
 if not GOOGLE_API_KEY:
-    st.error("❌ GOOGLE_API_KEY not found. Please set it in your environment variables.")
+    st.error("❌ GOOGLE_API_KEY not found. Please set it in your Streamlit secrets.")
 else:
     genai.configure(api_key=GOOGLE_API_KEY)
 
@@ -36,7 +31,7 @@ def code_review(code, language):
     ```
     """
     try:
-        model = genai.GenerativeModel(model_name="gemini-1.5-pro")  # <-- Corrected model name!
+        model = genai.GenerativeModel(model_name="gemini-1.5-pro")  # Correct model name
         response = model.generate_content(
             [prompt],
             generation_config={
