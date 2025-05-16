@@ -31,7 +31,7 @@ def code_review(code, language):
     ```
     """
     try:
-        model = genai.GenerativeModel(model_name="gemini-1.5-pro")  # Correct model name
+        model = genai.GenerativeModel(model_name="gemini-2.5-pro")  # Correct model name
         response = model.generate_content(
             [prompt],
             generation_config={
